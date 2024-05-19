@@ -27,12 +27,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.androidcomponents.R
 import com.example.androidcomponents.navhost.AppRoutes
 import com.example.androidcomponents.ui.theme.Black
 import com.example.androidcomponents.ui.theme.Blue
@@ -103,7 +105,7 @@ fun SignInScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
-            text = "Welcome to Android Components", // TODO
+            text = stringResource(id = R.string.sign_in_welcome_text),
             textAlign = TextAlign.Center,
             color = Color.Cyan
         )
@@ -114,7 +116,7 @@ fun SignInScreen(
             value = emailOrUsername,
             onValueChange = { viewModel.setEmailOrUsername(it) },
             label = {
-                Text(text = "Email") // TODO
+                Text(text = stringResource(id = R.string.email_text))
             },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -129,7 +131,7 @@ fun SignInScreen(
             value = password,
             onValueChange = { viewModel.setPassword(it) },
             label = {
-                Text(text = "Password") // TODO
+                Text(text = stringResource(id = R.string.password_text))
             },
             singleLine = true,
             visualTransformation = PasswordVisualTransformation(),
@@ -160,7 +162,7 @@ fun SignInScreen(
                     modifier = Modifier.size(30.dp)
                 )
             else
-                Text(text = "Sign In") // TODO
+                Text(text = stringResource(id = R.string.sign_in_text))
         }
     }
 }

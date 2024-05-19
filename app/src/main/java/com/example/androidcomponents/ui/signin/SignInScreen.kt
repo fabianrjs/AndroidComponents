@@ -23,7 +23,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -44,7 +43,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignInScreen(
     viewModel: SignInViewModel = koinViewModel(),
@@ -54,7 +52,7 @@ fun SignInScreen(
     val password by viewModel.password.collectAsState()
     val signInLoading by viewModel.signInLoading.collectAsState()
 
-    val keyboardController = LocalSoftwareKeyboardController.current // TODO Check when Compose BOM upgraded
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     val color1 = remember { Animatable(BlueDark) }
     val color2 = Black
@@ -141,7 +139,7 @@ fun SignInScreen(
             ),
             keyboardActions = KeyboardActions(
                 onDone = {
-                    keyboardController?.hide() // TODO Check when Compose BOM upgraded
+                    keyboardController?.hide()
                     viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
                 }
             ),

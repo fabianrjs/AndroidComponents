@@ -69,4 +69,7 @@ dependencies {
 
     // Koin for Android
     implementation(libs.io.koin.compose)
+
+    // Navigation Compose
+    implementation(libs.androidx.navigation.compose)
 }

@@ -26,12 +26,13 @@ class SignInViewModel: ViewModel() {
         _emailOrUsername.value = newValue
     }
 
-    fun signIn() {
+    fun signIn(navigateToHomeScreen: () -> Unit) {
         // TODO Repository call returning a flow
         _signInLoading.value = true
         viewModelScope.launch {
             delay(5000)
             _signInLoading.value = false
+            navigateToHomeScreen()
         }
     }
 }

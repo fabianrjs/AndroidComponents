@@ -33,6 +33,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.androidcomponents.navhost.AppRoutes
 import com.example.androidcomponents.ui.theme.Black
 import com.example.androidcomponents.ui.theme.Blue
 import com.example.androidcomponents.ui.theme.BlueDark
@@ -45,7 +47,8 @@ import org.koin.androidx.compose.koinViewModel
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SignInScreen(
-    viewModel: SignInViewModel = koinViewModel()
+    viewModel: SignInViewModel = koinViewModel(),
+    navController: NavController
 ) {
     val emailOrUsername by viewModel.emailOrUsername.collectAsState()
     val password by viewModel.password.collectAsState()
@@ -139,7 +142,7 @@ fun SignInScreen(
             keyboardActions = KeyboardActions(
                 onDone = {
                     keyboardController?.hide() // TODO Check when Compose BOM upgraded
-                    viewModel.signIn()
+                    viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
                 }
             ),
         )
@@ -150,7 +153,7 @@ fun SignInScreen(
                 .padding(vertical = 10.dp),
             onClick = {
                 keyboardController?.hide()
-                viewModel.signIn()
+                viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
             },
             enabled = !signInLoading
         ) {

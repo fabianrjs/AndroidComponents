@@ -10,7 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.androidcomponents.navhost.AppNavHost
-import com.example.androidcomponents.ui.theme.AndroidComponentsTheme
+import com.example.ui_components.theme.AndroidComponentsTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

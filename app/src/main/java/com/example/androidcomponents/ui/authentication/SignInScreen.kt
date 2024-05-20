@@ -7,13 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +17,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -29,12 +24,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.androidcomponents.R
 import com.example.androidcomponents.navhost.AppRoutes
-import com.example.androidcomponents.ui.backgroundBrush
-import com.example.ui_components.theme.White
+import com.example.ui_components.PrimaryButton
+import com.example.ui_components.SecondaryButton
+import com.example.ui_components.animated.backgroundBrush
+import com.example.ui_components.theme.BlueLight
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -61,7 +57,7 @@ fun SignInScreen(
                 .wrapContentHeight(),
             text = stringResource(id = R.string.sign_in_welcome_text),
             textAlign = TextAlign.Center,
-            color = Color.Cyan
+            color = BlueLight
         )
         OutlinedTextField(
             modifier = Modifier
@@ -80,8 +76,7 @@ fun SignInScreen(
         )
         OutlinedTextField(
             modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .padding(vertical = 10.dp),
+                .fillMaxWidth(0.8f),
             value = password,
             onValueChange = { viewModel.setPassword(it) },
             label = {
@@ -100,43 +95,25 @@ fun SignInScreen(
                 }
             ),
         )
-        Button(
+        PrimaryButton(
             modifier = Modifier
                 .fillMaxWidth(0.8f)
-                .padding(vertical = 10.dp)
-                .height(50.dp),
-            onClick = {
-                keyboardController?.hide()
-                viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
-            },
-            enabled = !signInLoading
+                .padding(bottom = 10.dp, top = 20.dp)
+                .height(45.dp),
+            text = stringResource(id = R.string.sign_in_text),
+            isLoading = signInLoading,
         ) {
-            if (signInLoading)
-                CircularProgressIndicator(
-                    modifier = Modifier.size(30.dp)
-                )
-            else
-                Text(
-                    text = stringResource(id = R.string.sign_in_text),
-                    fontSize = 16.sp
-                )
+            keyboardController?.hide()
+            viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
         }
-        Button(
+        SecondaryButton(
             modifier = Modifier
                 .fillMaxWidth(0.8f)
-                .height(50.dp),
-            onClick = { navController.navigate(AppRoutes.SingUpScreen.route) },
-            colors = ButtonDefaults.buttonColors(
-                contentColor = White,
-                containerColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            ),
-            enabled = !signInLoading
+                .height(45.dp),
+            text = stringResource(id = R.string.sign_up_text),
+            enabled = !signInLoading,
         ) {
-            Text(
-                text = stringResource(id = R.string.sign_up_text),
-                fontSize = 16.sp,
-            )
+            navController.navigate(AppRoutes.SingUpScreen.route)
         }
     }
 }

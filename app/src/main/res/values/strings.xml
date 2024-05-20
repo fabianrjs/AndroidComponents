@@ -4,6 +4,7 @@
     // Common Strings
     <string name="email_text">Email</string>
     <string name="password_text">Password</string>
+    <string name="sign_up_text">Sign Up</string>
 
     // Sign In Screen
     <string name="sign_in_welcome_text">Welcome to Android Components</string>

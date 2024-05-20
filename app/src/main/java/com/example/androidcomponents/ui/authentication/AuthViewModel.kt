@@ -1,4 +1,4 @@
-package com.example.androidcomponents.ui.signin
+package com.example.androidcomponents.ui.authentication
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class SignInViewModel: ViewModel() {
+class AuthViewModel: ViewModel() {
 
     private val _emailOrUsername = MutableStateFlow("")
     val emailOrUsername = _emailOrUsername.asStateFlow()
@@ -30,7 +30,7 @@ class SignInViewModel: ViewModel() {
         // TODO Repository call returning a flow
         _signInLoading.value = true
         viewModelScope.launch {
-            delay(5000)
+            delay(3000)
             _signInLoading.value = false
             navigateToHomeScreen()
         }

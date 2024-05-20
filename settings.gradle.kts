@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android Components"
 include(":app")
- 
+include(":ui_components")

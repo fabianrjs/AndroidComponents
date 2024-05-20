@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import com.example.androidcomponents.R
 import com.example.androidcomponents.navhost.AppRoutes
 import com.example.androidcomponents.ui.backgroundBrush
-import com.example.androidcomponents.ui.theme.White
+import com.example.ui_components.theme.White
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

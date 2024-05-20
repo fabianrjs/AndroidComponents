@@ -73,4 +73,7 @@ dependencies {
 
     // Navigation Compose
     implementation(libs.androidx.navigation.compose)
+
+    // Project Modules
+    implementation(project(":ui_components"))
 }

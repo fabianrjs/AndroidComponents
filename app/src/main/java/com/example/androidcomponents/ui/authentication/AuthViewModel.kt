@@ -19,11 +19,11 @@ class AuthViewModel: ViewModel() {
     val signInLoading = _signInLoading.asStateFlow()
 
     fun setPassword(newValue: String) {
-        _password.value = newValue
+        if (newValue.length <= 30) _password.value = newValue
     }
 
     fun setEmailOrUsername(newValue: String) {
-        _emailOrUsername.value = newValue
+        if (newValue.length <= 60) _emailOrUsername.value = newValue
     }
 
     fun signIn(navigateToHomeScreen: () -> Unit) {

@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -19,14 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.androidcomponents.R
 import com.example.androidcomponents.navhost.AppRoutes
+import com.example.ui_components.EmailInputField
+import com.example.ui_components.PasswordInputField
 import com.example.ui_components.PrimaryButton
 import com.example.ui_components.SecondaryButton
 import com.example.ui_components.animated.backgroundBrush
@@ -59,35 +56,18 @@ fun SignInScreen(
             textAlign = TextAlign.Center,
             color = BlueLight
         )
-        OutlinedTextField(
+        EmailInputField(
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .padding(vertical = 10.dp),
             value = emailOrUsername,
             onValueChange = { viewModel.setEmailOrUsername(it) },
-            label = {
-                Text(text = stringResource(id = R.string.email_text))
-            },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = ImeAction.Next,
-            ),
         )
-        OutlinedTextField(
+        PasswordInputField(
             modifier = Modifier
                 .fillMaxWidth(0.8f),
             value = password,
             onValueChange = { viewModel.setPassword(it) },
-            label = {
-                Text(text = stringResource(id = R.string.password_text))
-            },
-            singleLine = true,
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done,
-            ),
             keyboardActions = KeyboardActions(
                 onDone = {
                     keyboardController?.hide()

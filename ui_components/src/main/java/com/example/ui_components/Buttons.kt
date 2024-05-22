@@ -57,7 +57,7 @@ fun SecondaryButton(
         modifier = modifier,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            contentColor = White.copy(alpha = 0.6f),
+            contentColor = White.copy(alpha = 0.7f),
             containerColor = Color.Transparent,
             disabledContainerColor = Color.Transparent
         ),

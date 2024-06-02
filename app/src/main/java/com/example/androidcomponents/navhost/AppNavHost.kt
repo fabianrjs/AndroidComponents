@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.androidcomponents.ui.authentication.SignInScreen
-import com.example.androidcomponents.ui.authentication.SignUpScreen
+import com.example.androidcomponents.ui.signin.SignInScreen
+import com.example.androidcomponents.ui.signup.SignUpScreen
 import com.example.androidcomponents.ui.home.HomeScreen
 
 sealed class AppRoutes(val route: String) {
@@ -18,7 +18,7 @@ sealed class AppRoutes(val route: String) {
 @Composable
 fun AppNavHost(
     modifier: Modifier,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     NavHost(
         modifier = modifier,

@@ -1,16 +1,16 @@
-package com.example.androidcomponents.ui.authentication
+package com.example.androidcomponents.ui.signin
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.androidcomponents.base.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel: ViewModel() {
+class SignInViewModel: BaseViewModel() {
 
-    private val _emailOrUsername = MutableStateFlow("")
-    val emailOrUsername = _emailOrUsername.asStateFlow()
+    private val _email = MutableStateFlow("")
+    val email = _email.asStateFlow()
 
     private val _password = MutableStateFlow("")
     val password = _password.asStateFlow()
@@ -22,8 +22,8 @@ class AuthViewModel: ViewModel() {
         if (newValue.length <= 30) _password.value = newValue
     }
 
-    fun setEmailOrUsername(newValue: String) {
-        if (newValue.length <= 60) _emailOrUsername.value = newValue
+    fun setEmail(newValue: String) {
+        if (newValue.length <= 60) _email.value = newValue
     }
 
     fun signIn(navigateToHomeScreen: () -> Unit) {

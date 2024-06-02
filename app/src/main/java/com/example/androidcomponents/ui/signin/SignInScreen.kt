@@ -1,4 +1,4 @@
-package com.example.androidcomponents.ui.authentication
+package com.example.androidcomponents.ui.signin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,10 +32,10 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignInScreen(
-    viewModel: AuthViewModel = koinViewModel(),
+    viewModel: SignInViewModel = koinViewModel(),
     navController: NavController
 ) {
-    val emailOrUsername by viewModel.emailOrUsername.collectAsState()
+    val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
     val signInLoading by viewModel.signInLoading.collectAsState()
 
@@ -60,8 +60,8 @@ fun SignInScreen(
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .padding(vertical = 10.dp),
-            value = emailOrUsername,
-            onValueChange = { viewModel.setEmailOrUsername(it) },
+            value = email,
+            onValueChange = { viewModel.setEmail(it) },
         )
         PasswordInputField(
             modifier = Modifier
@@ -84,7 +84,10 @@ fun SignInScreen(
             isLoading = signInLoading,
         ) {
             keyboardController?.hide()
-            viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
+            viewModel.signIn {
+                navController.navigate(AppRoutes.HomeScreen.route)
+                navController.popBackStack(AppRoutes.SignInScreen.route, true)
+            }
         }
         SecondaryButton(
             modifier = Modifier

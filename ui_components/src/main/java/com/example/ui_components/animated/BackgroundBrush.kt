@@ -2,9 +2,12 @@ package com.example.ui_components.animated
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import com.example.ui_components.theme.Black
 import com.example.ui_components.theme.Blue
@@ -15,7 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun backgroundBrush(): Brush {
+fun BackgroundBrush(modifier: Modifier) {
 
     val color1 = remember { Animatable(BlueDark) }
     val color2 = Black
@@ -54,5 +57,7 @@ fun backgroundBrush(): Brush {
             delay(3100)
         }
     }
-    return Brush.linearGradient(listOf(color1.value, color2, color3.value))
+    val backgroundBrush = Brush.linearGradient(listOf(color1.value, color2, color3.value))
+
+    Box(modifier = modifier.background(backgroundBrush))
 }

@@ -30,7 +30,7 @@ class SignInViewModel: BaseViewModel() {
         // TODO Repository call returning a flow
         _signInLoading.value = true
         viewModelScope.launch {
-            delay(3000)
+            delay(500)
             _signInLoading.value = false
             navigateToHomeScreen()
         }

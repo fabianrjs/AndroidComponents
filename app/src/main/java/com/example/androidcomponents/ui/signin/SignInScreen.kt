@@ -73,7 +73,11 @@ fun SignInScreen(
                 keyboardActions = KeyboardActions(
                     onDone = {
                         keyboardController?.hide()
-                        viewModel.signIn { navController.navigate(AppRoutes.HomeScreen.route) }
+                        viewModel.signIn {
+                            navController.navigate(AppRoutes.ComponentsScreen.route) {
+                                popUpTo(AppRoutes.SignInScreen.route) { inclusive = true }
+                            }
+                        }
                     }
                 ),
             )
@@ -87,8 +91,9 @@ fun SignInScreen(
             ) {
                 keyboardController?.hide()
                 viewModel.signIn {
-                    navController.navigate(AppRoutes.HomeScreen.route)
-                    navController.popBackStack(AppRoutes.SignInScreen.route, true)
+                    navController.navigate(AppRoutes.ComponentsScreen.route) {
+                        popUpTo(AppRoutes.SignInScreen.route) { inclusive = true }
+                    }
                 }
             }
             SecondaryButton(

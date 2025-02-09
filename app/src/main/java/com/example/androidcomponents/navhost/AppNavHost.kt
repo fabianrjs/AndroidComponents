@@ -7,12 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.androidcomponents.ui.signin.SignInScreen
 import com.example.androidcomponents.ui.signup.SignUpScreen
-import com.example.androidcomponents.ui.home.HomeScreen
+import com.example.androidcomponents.ui.components.ComponentsScreen
+import com.example.androidcomponents.ui.components.networkchanges.ListeningNetworkChangesScreen
 
 sealed class AppRoutes(val route: String) {
     object SignInScreen: AppRoutes("signInScreen")
     object SingUpScreen: AppRoutes("signUpScreen")
-    object HomeScreen: AppRoutes("homeScreen")
+    object ComponentsScreen: AppRoutes("componentsScreen")
+    object ListeningNetworkChangesScreen: AppRoutes("listeningNetworkChangesScreen")
 }
 
 @Composable
@@ -31,8 +33,11 @@ fun AppNavHost(
         composable(route = AppRoutes.SingUpScreen.route) {
             SignUpScreen(navController = navController)
         }
-        composable(route = AppRoutes.HomeScreen.route) {
-            HomeScreen()
+        composable(route = AppRoutes.ComponentsScreen.route) {
+            ComponentsScreen(navController = navController)
+        }
+        composable(route = AppRoutes.ListeningNetworkChangesScreen.route) {
+            ListeningNetworkChangesScreen()
         }
     }
 }
